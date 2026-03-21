@@ -13,3 +13,4 @@ export const analyzeEntry = text =>
 
 export const getInsights = userId =>
   axios.get(`${API}/journal/insights/${userId}`);
+
