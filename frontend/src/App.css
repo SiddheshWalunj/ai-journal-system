@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Global font */
 body {
   margin: 0;
@@ -195,4 +196,203 @@ h3 {
   text-align: center;
   padding: 20px;
   font-size: 16px;
+=======
+/* Global font */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f4f6f8;
+}
+
+/* Page background */
+.app-background {
+  min-height: 100vh;
+  padding-top: 40px;
+}
+
+/* Main container card */
+.app-container {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Headings */
+h1 {
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+/* Textarea (journal editor) */
+.journal-textarea {
+  min-height: 140px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  resize: vertical;
+  background: #fafafa;
+}
+
+/* Character counter */
+.char-counter {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #888;
+  text-align: right;
+}
+
+/* Button row */
+.button-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Primary button */
+.button-primary {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary button */
+.button-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Toast message */
+.toast-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #e6ffed;
+  border: 1px solid #b7ebc6;
+  color: #000;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-weight: 500;
+  z-index: 1000;
+}
+
+/* Cards (analysis, insights, entries) */
+.card {
+  margin-top: 15px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Insight grid */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Entry list */
+.entries-grid {
+  display: grid;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Entry card */
+.entry-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Entry text */
+.entry-text {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* Tag row */
+.tag-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* Emotion tag */
+.tag-emotion {
+  background: #e3f2fd;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Ambience tag */
+.tag-ambience {
+  background: #e8f5e9;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Keywords */
+.keyword {
+  background: #e3f2fd;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Keyword container */
+.keyword-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Loading text */
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+>>>>>>> 82864438c9d7d33b4bac508629d7c9e945d7e060
 }
