@@ -8,7 +8,140 @@ body {
 /* Page background */
 .app-background {
   min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
   padding-top: 40px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Login page background image */
+.login-bg-image {
+  background-image: url('./login_page.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Add a dark overlay to dim the background image */
+.login-bg-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.30); /* adjust opacity as needed */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-container {
+  position: relative;
+  z-index: 5;
+  transform: translateY(40%);
+}
+
+/* Left-align login content */
+.login-left-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-left: 7vw;
+  padding-top: 8vh;
+  overflow: hidden;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Login container card */
+.login-container {
+  max-width: 350px;
+  width: 100%;
+  margin: 0;
+  padding: 36px 32px 32px 32px;
+  background: rgba(255,255,255,0.60);
+  box-shadow: 0 6px 24px 0 rgba(0,0,0,0.13);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 220px;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-family: "Sceipts", "sans-serif";
+}
+
+.login-subtitle {
+  text-align: center;
+  margin-bottom: 28px;
+  color: #010101;
+  font-size: 1rem;
+  font-weight: 200;
+  
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.password-input {
+  text-align: left;
+}
+
+.login-btn {
+  width: 100%;
+}
+
+.login-links-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.97rem;
+}
+
+.login-link {
+  color: #1f201f;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 8px;
+  margin-right: 8px;
+  transition: color 0.2s;
+}
+.login-link:hover {
+  color: #000000;
+}
+
+.login-message {
+  position: static;
+  margin-top: 18px;
+  text-align: center;
 }
 
 /* Main container card */

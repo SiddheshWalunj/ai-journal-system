@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import LoginPage from "./LoginPage";
 import {
   getEntries,
   saveEntry,
@@ -8,6 +9,8 @@ import {
 } from "./api";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   const [text, setText] = useState("");
   const [entries, setEntries] = useState([]);
@@ -16,7 +19,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const userId = "123";
+  const userId = userEmail || "123";
 
   const loadEntries = async () => {
     setInsights(null);
@@ -86,6 +89,10 @@ function App() {
     const res = await getInsights(userId);
     setInsights(res.data);
   };
+
+  if (!loggedIn) {
+    return <LoginPage onLogin={email => { setLoggedIn(true); setUserEmail(email); }} />;
+  }
 
   return (
 
