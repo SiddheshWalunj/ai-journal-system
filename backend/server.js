@@ -93,6 +93,18 @@ app.get("/api/journal/all", (req, res) => {
   );
 });
 
+app.get("/api/journal/", (req, res) => {
+  db.all(
+    "SELECT * FROM journal ORDER BY createdAt DESC",
+    [],
+    (err, rows) => {
+      if (err) return res.status(500).json(err);
+
+      res.json(rows);
+    }
+  );
+});
+
 app.post("/api/journal/analyze", async (req, res) => {
   try {
     const { text } = req.body;
@@ -111,9 +123,67 @@ app.post("/api/journal/analyze", async (req, res) => {
   }
 });
 
-app.get("/api/journal/insights", (req, res) => {
+app.get("/api/journal/insights/all", (req, res) => {
+  db.all("SELECT * FROM journal ORDER BY createdAt DESC", [], (err, rows) => {
+    if (err) return res.status(500).json(err);
 
-  db.all("SELECT * FROM journal", [], (err, rows) => {
+    if (rows.length === 0) {
+      return res.json({
+        totalEntries: 0,
+        topEmotion: null,
+        mostUsedAmbience: null,
+        recentKeywords: []
+      });
+    }
+
+    const totalEntries = rows.length;
+
+    const emotionCount = {};
+    const ambienceCount = {};
+    const keywordCount = {};
+
+    rows.forEach(r => {
+      // emotion count
+      emotionCount[r.emotion] = (emotionCount[r.emotion] || 0) + 1;
+
+      // ambience count
+      ambienceCount[r.ambience] = (ambienceCount[r.ambience] || 0) + 1;
+
+      // keywords
+      const keywords = JSON.parse(r.keywords || "[]");
+
+      keywords.forEach(k => {
+        keywordCount[k] = (keywordCount[k] || 0) + 1;
+      });
+    });
+
+    const topEmotion =
+      Object.keys(emotionCount).sort(
+        (a, b) => emotionCount[b] - emotionCount[a]
+      )[0];
+
+    const mostUsedAmbience =
+      Object.keys(ambienceCount).sort(
+        (a, b) => ambienceCount[b] - ambienceCount[a]
+      )[0];
+
+    const recentKeywords = Object.keys(keywordCount)
+      .sort((a, b) => keywordCount[b] - keywordCount[a])
+      .slice(0, 5);
+
+    res.json({
+      totalEntries,
+      topEmotion,
+      mostUsedAmbience,
+      recentKeywords
+    });
+  });
+});
+
+app.get("/api/journal/insights/:userId", (req, res) => {
+  const { userId } = req.params;
+
+  db.all("SELECT * FROM journal WHERE userId=?", [userId], (err, rows) => {
     if (err) return res.status(500).json(err);
 
     if (rows.length === 0) {

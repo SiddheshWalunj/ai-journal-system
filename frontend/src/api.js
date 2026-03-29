@@ -14,6 +14,9 @@ export const saveEntry = data =>
 export const analyzeEntry = text =>
   axios.post(`${API}/journal/analyze`, { text });
 
-export const getInsights = () =>
-  axios.get(`${API}/journal/insights`);
+export const getInsights = userId =>
+  axios.get(`${API}/journal/insights/${userId}`);
+
+export const getAllInsights = () =>
+  axios.get(`${API}/journal/insights/all`);
 
