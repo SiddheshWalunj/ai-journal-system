@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import LoginPage from "./LoginPage";
 import {
-  getEntries,
+  getAllEntries,
   saveEntry,
   analyzeEntry,
   getInsights
@@ -25,8 +25,14 @@ function App() {
     setInsights(null);
     setAnalysis(null);
 
-    const res = await getEntries(userId);
-    setEntries(res.data);
+    try {
+      const res = await getAllEntries();
+      setEntries(res.data);
+    } catch (err) {
+      console.error(err);
+      setMessage('Failed to load entries.');
+      setTimeout(() => setMessage(''), 3000);
+    }
   };
 
   const save = async () => {
@@ -86,7 +92,7 @@ function App() {
     setEntries([]);
     setAnalysis(null);
 
-    const res = await getInsights(userId);
+    const res = await getInsights();
     setInsights(res.data);
   };
 

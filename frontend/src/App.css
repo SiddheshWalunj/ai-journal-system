@@ -41,13 +41,12 @@ body {
 .login-container {
   position: relative;
   z-index: 5;
-  transform: translateY(40%);
 }
 
 /* Left-align login content */
 .login-left-layout {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
   min-width: 100vw;
@@ -55,7 +54,6 @@ body {
   height: 100vh;
   box-sizing: border-box;
   padding-left: 7vw;
-  padding-top: 8vh;
   overflow: hidden;
 }
 
@@ -139,8 +137,10 @@ body, html {
 }
 
 .login-message {
-  position: static;
-  margin-top: 18px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
   text-align: center;
 }
 

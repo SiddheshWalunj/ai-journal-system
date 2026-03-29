@@ -128,8 +128,8 @@ function LoginPage({ onLogin }) {
             </button>
           </form>
         )}
-        {message && <div className="toast-message login-message">{message}</div>}
       </div>
+      {message && <div className="toast-message login-message">{message}</div>}
     </div>
   );
 }

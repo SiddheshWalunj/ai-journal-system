@@ -32,25 +32,25 @@ const PORT = process.env.PORT || 5000;
 
 app.post("/api/journal", async (req, res) => {
   try {
-    const { userId, text ,analysis} = req.body;
+    const { userId, text, analysis } = req.body;
 
-  if (!userId) {
-    return res.status(400).json({
-      error: "userId is required"
-    });
-  }
+    if (!userId) {
+      return res.status(400).json({
+        error: "userId is required"
+      });
+    }
 
-  if (!analysis) {
-  return res.status(400).json({
-    error: "Analysis must be performed before saving"
-  });
-}
+    if (!analysis) {
+      return res.status(400).json({
+        error: "Analysis must be performed before saving"
+      });
+    }
 
-  if (!text || text.trim().length < 3) {
-    return res.status(400).json({
-      error: "Journal text must be at least 3 characters"
-    });
-  }
+    if (!text || text.trim().length < 3) {
+      return res.status(400).json({
+        error: "Journal text must be at least 3 characters"
+      });
+    }
 
     // const analysis = await analyzeEmotionAndAmbience(text);
 
@@ -76,17 +76,15 @@ app.post("/api/journal", async (req, res) => {
       }
     );
   } catch (err) {
-  console.error(err);
-  res.status(500).json({ error: "Analysis failed" });
-}
+    console.error(err);
+    res.status(500).json({ error: "Analysis failed" });
+  }
 });
 
-app.get("/api/journal/:userId", (req, res) => {
-  const { userId } = req.params;
-
+app.get("/api/journal/all", (req, res) => {
   db.all(
-    "SELECT * FROM journal WHERE userId=? ORDER BY createdAt DESC",
-    [userId],
+    "SELECT * FROM journal ORDER BY createdAt DESC",
+    [],
     (err, rows) => {
       if (err) return res.status(500).json(err);
 
@@ -113,10 +111,9 @@ app.post("/api/journal/analyze", async (req, res) => {
   }
 });
 
-app.get("/api/journal/insights/:userId", (req, res) => {
-  const { userId } = req.params;
+app.get("/api/journal/insights", (req, res) => {
 
-  db.all("SELECT * FROM journal WHERE userId=?", [userId], (err, rows) => {
+  db.all("SELECT * FROM journal", [], (err, rows) => {
     if (err) return res.status(500).json(err);
 
     if (rows.length === 0) {
