@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./App.css";
 import LoginPage from "./LoginPage";
 import {
-  getEntries,
+  getAllEntries,
+  getAllInsights,
   saveEntry,
   analyzeEntry,
-  getInsights
 } from "./api";
 
 function App() {
@@ -25,8 +25,14 @@ function App() {
     setInsights(null);
     setAnalysis(null);
 
-    const res = await getEntries(userId);
-    setEntries(res.data);
+    try {
+      const res = await getAllEntries();
+      setEntries(res.data);
+    } catch (err) {
+      console.error(err);
+      setMessage('Failed to load entries.');
+      setTimeout(() => setMessage(''), 3000);
+    }
   };
 
   const save = async () => {
@@ -86,8 +92,25 @@ function App() {
     setEntries([]);
     setAnalysis(null);
 
-    const res = await getInsights(userId);
-    setInsights(res.data);
+    try {
+      const res = await getAllInsights();
+      setInsights(res.data);
+    } catch (err) {
+      console.error(err);
+      setMessage('Failed to load insights.');
+      setTimeout(() => setMessage(''), 3000);
+    }
+  };
+
+  const logout = () => {
+    // Clear user state and return to login page
+    setLoggedIn(false);
+    setUserEmail("");
+    setEntries([]);
+    setAnalysis(null);
+    setInsights(null);
+    setText("");
+    setMessage("");
   };
 
   if (!loggedIn) {
@@ -97,6 +120,8 @@ function App() {
   return (
 
     <div className="app-background">
+
+      <button className="logout-btn" onClick={logout}>Logout</button>
 
       <div className="app-container">
 
